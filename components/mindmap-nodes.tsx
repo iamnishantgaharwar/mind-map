@@ -41,7 +41,7 @@ const MindmapNodes: React.FC<NodeProps<Node<MindmapNodeData>>> = ({ id, data, se
       temp.textContent = title;
       document.body.appendChild(temp);
       
-      let newWidth = Math.max(minWidth, Math.min(maxWidth, temp.offsetWidth + padding));
+      const newWidth = Math.max(minWidth, Math.min(maxWidth, temp.offsetWidth + padding));
       document.body.removeChild(temp);
       
       // Calculate height based on wrapped text

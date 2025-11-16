@@ -135,7 +135,7 @@ export default function Home() {
           >
             <h2 className="text-4xl font-bold mb-4">Built for Pro Users</h2>
             <p className="text-muted-foreground text-lg">
-              Everything you need to map your ideas, nothing you don't.
+              Everything you need to map your ideas, nothing you don&apos;t.
             </p>
           </motion.div>
 

@@ -39,7 +39,7 @@ import { Textarea } from "./ui/textarea";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { toast } from "sonner";
 import { Command, Keyboard, Upload, FileText, Sparkles, Copy, ExternalLink, Moon, Sun } from "lucide-react";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import useMousePosition from "@/hooks/useMousePosition";
 
 const selector = (state: RFState) => ({
@@ -100,7 +100,7 @@ const MindmapCanvas = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const handleAddNode = () => {
+  const handleAddNode = useCallback(() => {
     if (!reactFlowWrapper.current || !rfInstance) return;
 
     const bounds = reactFlowWrapper.current.getBoundingClientRect();
@@ -108,7 +108,7 @@ const MindmapCanvas = () => {
     const localY = y - bounds.top;
     const position = rfInstance.screenToFlowPosition({ x: localX, y: localY });
     addNode(position.x, position.y);
-  };
+  }, [x, y, rfInstance, addNode]);
 
   const handleExport = () => {
     const jsonData = exportData();
@@ -312,7 +312,7 @@ Now create a mindmap about: [YOUR TOPIC HERE]`;
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [x, y, rfInstance, nodes, edges, onConnect]); // Dependencies
+  }, [x, y, rfInstance, nodes, edges, onConnect, handleAddNode]); // Dependencies
 
 
 
@@ -520,7 +520,7 @@ Now create a mindmap about: [YOUR TOPIC HERE]`;
             <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900 rounded-lg p-4">
               <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-300 mb-2">How to use:</h4>
               <ol className="text-xs text-blue-700 dark:text-blue-400 space-y-1 list-decimal list-inside">
-                <li>Click "Open in ChatGPT" or copy the prompt</li>
+                <li>Click &quot;Open in ChatGPT&quot; or copy the prompt</li>
                 <li>Replace [YOUR TOPIC HERE] with your desired mindmap topic</li>
                 <li>Let AI generate the JSON structure</li>
                 <li>Copy the generated JSON</li>

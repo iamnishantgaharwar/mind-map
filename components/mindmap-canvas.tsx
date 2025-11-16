@@ -41,6 +41,7 @@ import { toast } from "sonner";
 import { Command, Keyboard, Upload, FileText, Sparkles, Copy, ExternalLink, Moon, Sun } from "lucide-react";
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import useMousePosition from "@/hooks/useMousePosition";
+import CursorBadge from "./cursor-badge";
 
 const selector = (state: RFState) => ({
   nodes: state.nodes,
@@ -362,6 +363,9 @@ Now create a mindmap about: [YOUR TOPIC HERE]`;
 
   return (
     <div className="h-screen w-screen bg-background" ref={reactFlowWrapper}>
+      {/* Cursor Badge - shows keyboard shortcut when in child mode */}
+      <CursorBadge show={childMode} selectedNodesCount={nodes.filter(node => node.selected).length} />
+      
       <ReactFlow
         colorMode={isDark ? 'dark' : 'light'}
         nodes={nodes}

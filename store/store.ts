@@ -85,6 +85,20 @@ const saveToStorage = (nodes: Node[], edges: Edge[]) => {
     }
 }
 
+/**
+ * Normalizes all node types to "input" to ensure consistent rendering
+ * with the MindmapNodes component, regardless of AI-generated or imported data.
+ * 
+ * @param nodes - Array of nodes to normalize
+ * @returns New array with all nodes having type "input"
+ */
+const normalizeNodeTypes = (nodes: Node[]): Node[] => {
+    return nodes.map(node => ({
+        ...node,
+        type: 'input'
+    }));
+};
+
 // Now we have to create a store for it
 const initialState = loadFromStorage();
 
@@ -181,9 +195,12 @@ const useStore = createWithEqualityFn<RFState>(
                     };
                 }
                 
-                // Import the data
-                set({ nodes: data.nodes, edges: data.edges });
-                saveToStorage(data.nodes, data.edges);
+                // Normalize node types to ensure consistent rendering
+                const normalizedNodes = normalizeNodeTypes(data.nodes);
+                
+                // Import the data with normalized nodes
+                set({ nodes: normalizedNodes, edges: data.edges });
+                saveToStorage(normalizedNodes, data.edges);
                 
                 // Return success with file info
                 const exportedAt = data._metadata.exportedAt 

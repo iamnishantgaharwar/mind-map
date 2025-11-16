@@ -58,7 +58,6 @@ const CursorBadge = ({ show, selectedNodesCount }: CursorBadgeProps) => {
       }}
     >
       <Badge className="flex items-center gap-1.5">
-        <Command className="w-3 h-3" />
         <span>{shortcut}</span>
         <span className="opacity-75">{action}</span>
       </Badge>

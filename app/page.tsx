@@ -338,7 +338,7 @@ export default function Home() {
                   </Link>
                 </li>
                 <li>
-                  <a href="https://github.com/iamnishantgaharwar/mindmap-creator" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  <a href="https://github.com/iamnishantgaharwar/mind-map" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
                     GitHub
                   </a>
                 </li>

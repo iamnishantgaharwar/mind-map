@@ -3,6 +3,7 @@ import type React from "react";
 import { Handle, NodeProps, NodeResizer, Position, useReactFlow, Node } from "@xyflow/react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import useStore from "@/store/store";
 
 export type MindmapNodeData = {
   label: string;
@@ -13,7 +14,8 @@ const MindmapNodes: React.FC<NodeProps<Node<MindmapNodeData>>> = ({ id, data, se
   const [title, setTitle] = useState(data.label || "New Node");
   const inputRef = useRef<HTMLInputElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const { updateNodeData, updateNode } = useReactFlow();
+  const { updateNode } = useReactFlow();
+  const updateNodeData = useStore((state) => state.updateNodeData);
 
   useEffect(() => {
     if (isEditing && inputRef.current) {

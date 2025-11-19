@@ -27,6 +27,7 @@ export type RFState = {
     onEdgesChange: OnEdgesChange;
     addNode: (x: number, y: number) => void;
     addOutputNode: (x: number, y: number) => void;
+    updateNodeData: (nodeId: string, data: any) => void;
     onConnect: OnConnect;
     clearAll: () => void;
     exportData: () => string;
@@ -138,6 +139,15 @@ const useStore = createWithEqualityFn<RFState>(
                 style: { width: 150, height: 80 }
             }
             const updatedNodes = [...get().nodes, newNode];
+            set({ nodes: updatedNodes });
+            saveToStorage(updatedNodes, get().edges);
+        },
+        updateNodeData: (nodeId: string, data: any) => {
+            const updatedNodes = get().nodes.map(node => 
+                node.id === nodeId 
+                    ? { ...node, data: { ...node.data, ...data } }
+                    : node
+            );
             set({ nodes: updatedNodes });
             saveToStorage(updatedNodes, get().edges);
         },

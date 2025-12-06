@@ -140,3 +140,17 @@
 
 
 
+
+/* Grid pattern for hero section */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgb(209 213 219) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(209 213 219) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgb(55 65 81) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(55 65 81) 1px, transparent 1px);
+}

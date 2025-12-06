@@ -260,6 +260,8 @@ General Rules:
 - Keep the _metadata structure exactly as shown
 - Avoid overlapping nodes
 - Create clear visual hierarchy
+- JSON structure must be clean with no comments
+- Output must match the exact format shown above, nothing more
 
 Now create a mindmap about: [YOUR TOPIC HERE]`;
   };

@@ -39,7 +39,7 @@ export default function RootLayout({
         >
           <TooltipProvider>
             <ReactFlowProvider>{children}</ReactFlowProvider>
-            <Toaster />
+            <Toaster richColors={true} theme="light" />
           </TooltipProvider>
         </ThemeProvider>
       </body>
